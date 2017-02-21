@@ -42,6 +42,12 @@ int main(void)
         cout << "'a'+10*5.2   type is " << typeid('a'+10*5.2).name() << " , value is " << 'a'+10*5.2 << endl;
         cout << "12U+3.0F*24L type is " << typeid(12U+3.0F*24L).name() << " , value is " << 12U+3.0F*24L << endl;
 
+        cout << "\n字符数组(a[])指针输出的例外, 不是地址，而是字符串;\n"
+             << "输出指针需要强制类型转换(void *)a\n" << endl;
+        cout << "字符数组     a = " << a << endl;
+        cout << "字符数组指针 a = " << (void *)a << endl;
+        cout << "字符数组值  *a = " << *a << endl;
+
         return 0;
 }
 
