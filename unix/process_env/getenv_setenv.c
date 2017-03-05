@@ -6,6 +6,11 @@
 // int putenv(char *string);
 // int unsetenv(const char *name);
 
+/**
+ * env variable.
+ *
+ * @farwish
+ */
 int main(void)
 {
     char *name = "HOME";

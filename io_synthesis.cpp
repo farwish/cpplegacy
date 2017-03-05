@@ -25,6 +25,11 @@ namespace AlconHelper {
     }
 }
 
+/**
+ * cout and printf.
+ *
+ * @farwish
+ */
 int main(void)
 {
     const int total = 101;

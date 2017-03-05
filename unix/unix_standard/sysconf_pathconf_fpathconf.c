@@ -10,6 +10,8 @@
  *  long pathconf(char *path, int name);
  *
  * NOTE: 在shell中可以用 ulimit -a 查看这些值.
+ *
+ * @farwish
  */
 
 int main(void)

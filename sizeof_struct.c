@@ -12,6 +12,11 @@ struct points {
     char z;
 };
 
+/**
+ * sizeof struct.
+ *
+ * @farwish
+ */
 int main(void)
 {
     struct date today;
