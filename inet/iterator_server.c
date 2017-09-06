@@ -13,17 +13,22 @@
  * @farwish
  */
 
+#include <unistd.h>
+// sprintf
 #include <stdio.h>
 // sockets
 #include <sys/socket.h>
 // memset
 #include <string.h>
+// time
+#include <time.h>
 
 int main(int argc, char *argv[])
 {
     int sockfd, bind_ret, listen_ret, connfd;
     struct sockaddr address;
-
+    time_t ticks;
+    char buff[100];
 
     // `man 3 socket`
     // example use socket: man 3 getaddrinfo
@@ -50,5 +55,16 @@ int main(int argc, char *argv[])
     }
 
     while (1) {
+        if ( (connfd = accept(sockfd, (struct sockaddr *)NULL, NULL)) < 0 ) {
+            sprintf("%s", "conn error\n"); return connfd;
+        }
+
+        ticks = time(NULL);
+
+        snprintf(buff, sizeof(buff), "%.24s\n", ctime(&ticks));
+
+        write(connfd, buff, strlen(buff));
+
+        close(connfd);
     }
 }
