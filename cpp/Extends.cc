@@ -31,6 +31,16 @@ class A {
         }
 };
 
+class AA {
+    private:
+        int i;
+
+    public:
+        AA(int ii) : i(ii) {
+            cout << "AA:AA() --->i = " << i << endl;
+        }
+};
+
 /**
  * 继承
  */
@@ -46,9 +56,17 @@ class B : public A {
         }
 };
 
+class BB : public AA {
+    public:
+        // 当实例化子类时，父类的构造函数会先被调用，当父类没有默认构造函数时，必须在子类中用 initializer list 对父类成员初始化
+        BB() : AA(0) {
+        }
+};
+
 int main()
 {
     B b;
+    BB bb;
     b.print();
     b.set(1);
     b.print();
@@ -62,6 +80,7 @@ int main()
 /* Output:
 
 A::A()
+AA:AA() --->i = 0
 A::A() ----> i = 0
 A::A() ----> i = 1
 B::p() ----> j = 1
