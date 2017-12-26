@@ -9,7 +9,7 @@
  * 使用场合：函数只有2~3行的，需要重复调用的
  * 不适合的：函数比较大，递归
  *
- * @license Apache-2.0
+ * @license BSD-3
  * @author farwish <farwish@foxmail.com>
  */
 class Rectangle {

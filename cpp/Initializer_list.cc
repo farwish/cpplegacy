@@ -3,7 +3,7 @@
 /**
  * 初始化列表 && 对象组合
  *
- * @license Apache
+ * @license BSD-3
  * @author farwish <farwish@foxmail.com>
  */
 using namespace std;

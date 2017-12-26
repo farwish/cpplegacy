@@ -1,7 +1,7 @@
 #include <iostream>
 
 /**
- * @license Apache-2.0
+ * @license BSD-3
  * @author farwish <farwish@foxmail.com>
  */
 using namespace std;
