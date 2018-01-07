@@ -19,7 +19,7 @@ class XYPos {
 class Shape {
 public:
     Shape() {}
-    virtual ~Shape() {}
+    virtual ~Shape() { cout << "Shape::~Shape()" << endl;  }
     void move(const XYPos&) {}
     virtual void resize() {}
     virtual void render() {}
@@ -33,6 +33,7 @@ protected:
 class Ellipse : public Shape {
 public:
     Ellipse(float maj, float minr) {}
+    ~Ellipse() { cout << "Ellipse::~Ellipse()" << endl;  }
     virtual void render() {
         cout << "Ellipse::render()" << endl;
     }
@@ -46,6 +47,7 @@ protected:
 class Circle : public Ellipse {
 public:
     Circle(float radius) : Ellipse(radius, radius) {}
+    ~Circle() { cout << "Circle::~Circle()" << endl; }
     virtual void render() {
         cout << "Circle::render()" << endl;
     }
@@ -72,16 +74,49 @@ int main()
     circ.render();      // 调用自己的render
 
     render(&ell);       // Upcast, 把ell当成Shape对象看待；调用了 Ellipse 类对象的 render
+
     render(&circ);      // Upcast
+
+
+    Shape* p = new Ellipse(100.0, 110.0);
+    delete p;
 
     return 0;
 }
 
 /*
+   # Shape的析构不是 virtual 时，delete p 时，只有 Shape 的析构会被调用，Ellipse 的不会调用。
 
-Ellipse::render()
-Circle::render()
-Ellipse::render()
-Circle::render()
+   Ellipse::render()
+   Circle::render()
+   Ellipse::render()
+   Circle::render()
+
+   Shape::~Shape()
+
+   Circle::~Circle()
+   Ellipse::~Ellipse()
+   Shape::~Shape()
+   Ellipse::~Ellipse()
+   Shape::~Shape()
+*/
+
+/*
+   # Shape的析构是 virtual 时，delete p 时，会先调子类的析构，在调父类的析构。
+   # 其它 OOP 默认就是 virtual 的，也就是动态绑定的，而C++默认是静态绑定的，动态绑定需要手动加 virtual。
+
+   Ellipse::render()
+   Circle::render()
+   Ellipse::render()
+   Circle::render()
+
+   Ellipse::~Ellipse()
+   Shape::~Shape()
+
+   Circle::~Circle()
+   Ellipse::~Ellipse()
+   Shape::~Shape()
+   Ellipse::~Ellipse()
+   Shape::~Shape()
 
 */
